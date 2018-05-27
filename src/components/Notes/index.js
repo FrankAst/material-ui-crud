@@ -50,9 +50,12 @@ class Notes extends React.Component {
 
   fetchNotes = () => {
     console.log('fetching notes...');
+    const { user } = this.props || {};
+    const { id } = user;
+    if(!id) this.props.history.push('/login');
     this.setState({ loading: true }, async () => {
-      const { data } = await axios.get('/notes');
-      console.log('notes', data);
+      const { data } = await axios('/getnotes', { method: 'POST', data: { id } });
+      console.log('notes', data.notes);
       this.setState({ notes: data.notes, loading: false });
     });
   };
@@ -118,7 +121,7 @@ class Notes extends React.Component {
             <CircularProgress />
           ) : (
             notes.map(note => (
-              <Grid key={note._id} item md={4} xs={12} sm={6}>
+              <Grid key={note.id} item md={4} xs={12} sm={6}>
                 <Note refetchNotes={this.fetchNotes} note={note} />
               </Grid>
             ))

@@ -22,8 +22,8 @@ const style = {
 };
 
 /* SETUP AXIOS */
-axios.defaults.baseURL = 'http://localhost:4000/api';
-axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('notesApiToken')}`;
+axios.defaults.baseURL = 'http://localhost:5000/';
+// axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('notesApiToken')}`;
 
 class App extends React.Component {
   constructor(props) {
@@ -41,19 +41,20 @@ class App extends React.Component {
   }
 
   saveUserFromToken = async () => {
-    axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('notesApiToken')}`;
     try {
-      const { data } = await axios.get('/user');
-
+      const { data } = await axios.get(`/users?id=${localStorage.getItem('userId')}`);
       this.setState({ user: data });
     } catch (e) {
       console.log('/login e', e);
       this.props.history.push('/login');
+
     }
   };
 
   deleteUser = () => {
     this.setState({ user: null });
+    localStorage.removeItem('userId');
+    this.props.history.push('/login');
   };
 
   render() {

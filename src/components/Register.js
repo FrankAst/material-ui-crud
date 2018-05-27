@@ -44,8 +44,9 @@ class Register extends React.Component {
     const { username, password } = this.state;
 
     try {
-      const { data } = await axios.post('/auth/register', { username, password });
-
+      const { data } = await axios.post('/signup', { email: username, password });
+      console.log(data);
+      localStorage.setItem('userId', data.id);
       try {
         await this.props.saveUserFromToken();
       } catch (e) {

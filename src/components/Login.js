@@ -36,16 +36,15 @@ class Login extends React.Component {
 
   handleChange = e => {
     const { name, value } = e.target;
-
     this.setState({ [name]: value });
   };
 
   handleLogin = async () => {
     const { username, password } = this.state;
-
     try {
-      const { data } = await axios.post('/auth/login', { username, password });
-      localStorage.setItem('notesApiToken', data);
+      const { data } = await axios.post('/login', { email: username, password });
+      console.log(data);
+      localStorage.setItem('userId', data.id);
       try {
         await this.props.saveUserFromToken();
       } catch (e) {

@@ -72,7 +72,7 @@ class Header extends React.Component {
           {user ? (
             <React.Fragment>
               <Button onClick={this.handleMenuOpen} color="inherit">
-                {user.username}
+                {user.email}
               </Button>
               <Menu
                 id="simple-menu"
@@ -80,9 +80,9 @@ class Header extends React.Component {
                 open={!!anchorEl}
                 onClose={this.handleMenuClose}
               >
-                <MenuItem component={Link} to="/profile" onClick={this.handleMenuClose}>
+                {/* <MenuItem component={Link} to="/profile" onClick={this.handleMenuClose}>
                   My profile
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
               </Menu>
             </React.Fragment>

@@ -7,21 +7,14 @@ export default () => (
       <Typography variant="display1">About</Typography>
       <Divider style={{ margin: '15px 0' }} />
       <Typography variant="title" gutterBottom>
-        Material-UI based CRUD React App
+        Final project created using React + ASP.NET CORE 2.0
       </Typography>
       <Typography variant="body1" gutterBottom>
         Made by{' '}
-        <a href="https://github.com/lyskos97" target="_blank">
-          @lyskos97
+        <a href="https://vk.com/vkiel" target="_blank">
+          Viktoriya Kiel
         </a>{' '}
-        for RESTful APIs with bearer-based auth
       </Typography>
-      <Typography variant="headline">Featuring</Typography>
-      <List  dense={true}>
-        <ListItem>React Router</ListItem>
-        <ListItem>Axios</ListItem>
-        <ListItem>Webpack</ListItem>
-      </List>
     </Paper>
   </React.Fragment>
 );

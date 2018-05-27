@@ -44,14 +44,14 @@ class Note extends React.Component {
 
     console.log('saving...');
 
-    await axios.put(`/notes/${note._id}`, { title, text });
+    await axios.put(`/notes/${note.id}`, { title, text });
     await this.props.refetchNotes();
   };
 
   handleDelete = async () => {
     const { note } = this.state;
     console.log('deleting...');
-    await axios.delete(`notes/${note._id}`);
+    await axios.delete(`notes/${note.id}`);
     console.log('deleted!');
     this.props.refetchNotes();
   };
@@ -59,16 +59,15 @@ class Note extends React.Component {
   handleChange = e => {
     const { note } = this.state;
     const { name, value } = e.target;
-
     this.setState({ note: { ...note, [name]: value } });
   };
 
   render() {
     const { edit, note } = this.state;
-    const { _id, title, text, updatedAt } = note;
+    const { id, title, text } = note;
 
-    const htmlTitleId = `note-title-${_id}`;
-    const htmlTextId = `note-text-${_id}`;
+    const htmlTitleId = `note-title-${id}`;
+    const htmlTextId = `note-text-${id}`;
 
     return (
       <Card style={styles.root}>
@@ -153,7 +152,7 @@ class Note extends React.Component {
             </Typography>
           )}
           <Divider style={{ marginTop: 15, marginBottom: 10 }} />
-          <Typography variant="caption">{updatedAt.toLocaleString()}</Typography>
+          {/* <Typography variant="caption">{updatedAt.toLocaleString()}</Typography> */}
         </CardContent>
       </Card>
     );
