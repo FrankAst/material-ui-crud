@@ -83,8 +83,20 @@ class Notes extends React.Component {
 
   handleNoteAdd = async () => {
     const { title, text } = this.state.newNote;
+    const { user } = this.props || {};
+    const { id } = user;
     try {
-      await axios.post('/notes', { title, text });
+      const query = {
+        note: {
+          title,
+          text
+        },
+        user: {
+          id,
+        }
+      };
+      
+      await axios.post('/notes', { ...query });
 
       this.fetchNotes();
       this.setState({

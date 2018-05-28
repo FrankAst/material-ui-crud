@@ -44,14 +44,17 @@ class Note extends React.Component {
 
     console.log('saving...');
 
-    await axios.put(`/notes/${note.id}`, { title, text });
+    await axios.put(`/notes`, { id: note.id, title, text });
     await this.props.refetchNotes();
   };
 
   handleDelete = async () => {
     const { note } = this.state;
+    console.log(note);
     console.log('deleting...');
-    await axios.delete(`notes/${note.id}`);
+    await axios.delete(`notes/`, {
+      data: note,
+    });
     console.log('deleted!');
     this.props.refetchNotes();
   };
